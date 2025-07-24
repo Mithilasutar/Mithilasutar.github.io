@@ -8,11 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initToolHovers();
     initProjectAnimations();
     initHeroAnimations();
-    initRotatingWords();
-    initRotatingAdjectives();
-    initCursorFollower();
     initFloatingPillInteractions();
-    initLetterHoverEffects();
     initContactButtons();
 });
 
@@ -571,54 +567,15 @@ function initCursorFollower() {
     updateCursorFollower();
 }
 
-// Floating Pills Interactions
+// Simple Floating Pills Interactions
 function initFloatingPillInteractions() {
     const floatingPills = document.querySelectorAll('.floating-pill');
     
     floatingPills.forEach(pill => {
-        pill.addEventListener('mouseenter', () => {
-            // Add sparkle effect on hover
-            const sparkle = document.createElement('div');
-            sparkle.innerHTML = '✨';
-            sparkle.style.position = 'absolute';
-            sparkle.style.top = '-10px';
-            sparkle.style.right = '-10px';
-            sparkle.style.fontSize = '1rem';
-            sparkle.style.animation = 'sparkle 0.6s ease-out forwards';
-            sparkle.style.pointerEvents = 'none';
-            pill.appendChild(sparkle);
-            
-            // Remove sparkle after animation
-            setTimeout(() => {
-                if (sparkle.parentNode) {
-                    sparkle.parentNode.removeChild(sparkle);
-                }
-            }, 600);
-        });
-        
         pill.addEventListener('click', () => {
-            // Create ripple effect
-            const ripple = document.createElement('div');
-            ripple.style.position = 'absolute';
-            ripple.style.width = '100%';
-            ripple.style.height = '100%';
-            ripple.style.borderRadius = 'inherit';
-            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s ease-out';
-            ripple.style.pointerEvents = 'none';
-            pill.appendChild(ripple);
-            
-            // Show notification with pill text
-            const text = pill.dataset.text || pill.textContent;
-            showNotification(`${text} - That's what I do best! 🚀`, 'success');
-            
-            // Remove ripple after animation
-            setTimeout(() => {
-                if (ripple.parentNode) {
-                    ripple.parentNode.removeChild(ripple);
-                }
-            }, 600);
+            // Show simple notification
+            const text = pill.textContent.trim();
+            showNotification(`${text} - That's what I do! 💼`, 'success');
         });
     });
 }
