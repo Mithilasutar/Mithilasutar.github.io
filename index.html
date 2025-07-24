@@ -3,25 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mithila Sutar - UX/UI Designer & Product Designer Portfolio 2025</title>
-    <meta name="description" content="Mithila Sutar - Product Designer crafting seamless, user-centered experiences. UX/UI Design, Mobile Apps, Digital Products. Portfolio 2025.">
+    <title>Mithila Swansi - UX/UI Designer & Product Designer Portfolio 2025</title>
+    <meta name="description" content="Mithila Swansi - Product Designer crafting seamless, user-centered experiences. UX/UI Design, Mobile Apps, Digital Products. Portfolio 2025.">
     <meta name="keywords" content="UX Designer, UI Designer, Product Designer, Portfolio 2025, User Experience, Interface Design">
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- DNS prefetch for external domains -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//miro.medium.com">
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Performance hints -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#0f0f23">
     
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    
+    <!-- Preload critical image -->
+    <link rel="preload" href="images/profile.jpg" as="image">
+    
+    <!-- Font Awesome - defer loading -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
-</head>
-<body>
+    
+    <!-- Critical CSS for initial render -->
+    <style>
+        /* Critical CSS for above-the-fold content */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f23; color: #ffffff; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(15, 15, 35, 0.95); backdrop-filter: blur(20px); padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 2rem; background: #0f0f23; }
+        .hero-content { text-align: center; max-width: 800px; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 6rem); font-weight: 700; margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; opacity: 0.8; }
+        /* Hide non-critical content initially */
+        .floating-pills { display: none; }
+        
+        /* Simple loading indicator */
+        .loading { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, #00c3a5, #ff69b4); z-index: 9999; transform: scaleX(0); transform-origin: left; animation: loadingBar 2s ease-out forwards; }
+        @keyframes loadingBar { to { transform: scaleX(1); } }
+    </style>
+  </head>
+  <body>
+      <!-- Loading indicator -->
+      <div class="loading" id="loadingBar"></div>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
@@ -33,7 +69,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#work" class="nav-link">Work</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
+
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -84,7 +120,7 @@
             <!-- Name and Role -->
             <div class="hero-name-section">
                 <div class="name-prefix">by</div>
-                <h2 class="hero-name">MITHILA SUTAR</h2>
+                <h2 class="hero-name">MITHILA SWANSI</h2>
                 <div class="role-text">Senior UX Designer</div>
             </div>
             
@@ -99,10 +135,7 @@
                     <span>View My Work</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="#contact" class="cta-secondary">
-                    <span>Let's Connect</span>
-                    <i class="fas fa-coffee"></i>
-                </a>
+
             </div>
         </div>
         
@@ -129,7 +162,7 @@
                     </p>
                 </div>
                 <div class="about-image">
-                    <img src="images/profile.jpg" alt="Mithila Sutar - Product Designer" loading="lazy">
+                    <img src="images/profile.jpg" alt="Mithila Swansi - Product Designer" loading="lazy">
                 </div>
             </div>
         </div>
@@ -138,128 +171,119 @@
     <!-- Experience & Skills Section -->
     <section id="experience" class="experience section">
         <div class="container">
-            <div class="experience-grid">
-                <!-- Experience Column -->
-                <div class="experience-column">
-                    <h2 class="section-header pill pill-pink">Experience</h2>
-                    
-                    <div class="experience-card">
-                        <h3 class="job-title">Sr. UX Designer</h3>
-                        <p class="job-company">Accenture, Pune</p>
-                        <p class="job-period">2021-08 – 2023-08</p>
-                        <p class="job-description">
-                            • Led Track and Trace project: gathered requirements, created visual prototypes, icons, and navigation system, resulting in a 10% increase in user satisfaction.<br>
-                            • Presented UX solutions to senior staff, evangelizing user-centric design.<br>
-                            • Improved customer engagement platform wireframes and navigation, increasing conversions and reducing bounce rates.<br>
-                            • Achieved higher conversion rates with carefully crafted UI elements.<br>
-                            • Implemented strategies to increase website traffic.
-                        </p>
-                    </div>
-                    <div class="experience-card">
-                        <h3 class="job-title">Sr. UX Designer</h3>
-                        <p class="job-company">Clodura System Pvt Ltd, Pune</p>
-                        <p class="job-period">2019-11 – 2021-05</p>
-                        <p class="job-description">
-                            • Designed 'RADAR' software for client relationship data.<br>
-                            • Developed user personas and scenarios, improving conversions by 15%.<br>
-                            • Built an online community with e-commerce integration.<br>
-                            • Designed a revamped dashboard, increasing Trust Pilot score from 4.5 to 4.9.
-                        </p>
-                    </div>
-                    <div class="experience-card">
-                        <h3 class="job-title">Graphic Designer</h3>
-                        <p class="job-company">Rewise Analytics and Technology</p>
-                        <p class="job-period">2018-06 – 2019-11</p>
-                        <p class="job-description">
-                            • Designed E-books, social media posts, banners, infographics, and business cards for UK/US clients.<br>
-                            • Implemented brand guidelines for consistent marketing.
-                        </p>
-                    </div>
-                    <div class="experience-card">
-                        <h3 class="job-title">Graphic Designer</h3>
-                        <p class="job-company">Buzzle Software Pvt Ltd</p>
-                        <p class="job-period">2016-05 – 2018-06</p>
-                        <p class="job-description">
-                            • Developed and implemented solutions for Buzzle Software web application.<br>
-                            • Involved in full software development lifecycle and release operations.
-                        </p>
-                    </div>
+            <h2 class="section-header pill pill-pink">Experience</h2>
+            <div class="experience-grid-2col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div class="experience-card">
+                    <h3 class="job-title">Sr. UX Designer</h3>
+                    <p class="job-company">Accenture, Pune</p>
+                    <p class="job-period">2021-08 – 2023-08</p>
+                    <p class="job-description">
+                        • Led Track and Trace project: gathered requirements, created visual prototypes, icons, and navigation system, resulting in a 10% increase in user satisfaction.<br>
+                        • Presented UX solutions to senior staff, evangelizing user-centric design.<br>
+                        • Improved customer engagement platform wireframes and navigation, increasing conversions and reducing bounce rates.<br>
+                        • Achieved higher conversion rates with carefully crafted UI elements.<br>
+                        • Implemented strategies to increase website traffic.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3 class="job-title">Sr. UX Designer</h3>
+                    <p class="job-company">Clodura System Pvt Ltd, Pune</p>
+                    <p class="job-period">2019-11 – 2021-05</p>
+                    <p class="job-description">
+                        • Designed 'RADAR' software for client relationship data.<br>
+                        • Developed user personas and scenarios, improving conversions by 15%.<br>
+                        • Built an online community with e-commerce integration.<br>
+                        • Designed a revamped dashboard, increasing Trust Pilot score from 4.5 to 4.9.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3 class="job-title">Graphic Designer</h3>
+                    <p class="job-company">Rewise Analytics and Technology</p>
+                    <p class="job-period">2018-06 – 2019-11</p>
+                    <p class="job-description">
+                        • Designed E-books, social media posts, banners, infographics, and business cards for UK/US clients.<br>
+                        • Implemented brand guidelines for consistent marketing.
+                    </p>
+                </div>
+                <div class="experience-card">
+                    <h3 class="job-title">Graphic Designer</h3>
+                    <p class="job-company">Buzzle Software Pvt Ltd</p>
+                    <p class="job-period">2016-05 – 2018-06</p>
+                    <p class="job-description">
+                        • Developed and implemented solutions for Buzzle Software web application.<br>
+                        • Involved in full software development lifecycle and release operations.
+                    </p>
+                </div>
+            </div>
 
-                    <h2 class="section-header pill pill-blue">Education</h2>
-                    
-                    <div class="education-language-row" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
-                        <div class="education-col" style="flex: 1 1 300px; min-width: 250px;">
-                            <div class="education-card">
-                                <h3 class="job-title">BE Computer Science</h3>
-                                <p class="job-company">Bharati Vidyapeeth College of Engineering</p>
-                                <p class="job-period">2011-01 – 2015-12</p>
+            <div class="skills-col" style="width: 100%; margin-top: 3rem;">
+                <h2 class="section-header pill pill-green">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>UX Design</h4>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>UX Architecture</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Wireframing & Prototyping</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>User Research</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Design Thinking</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>UI & Visual Design</h4>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Visual Design</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Responsive Design</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Mobile Design</span></div>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Product & Strategy</h4>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Product Strategy</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Agile Methodology</span></div>
+                        <div class="skill-item"><span class="skill-check">✓</span><span>Community Building</span></div>
+                    </div>
+                </div>
+
+                    <div class="tools-awards-row" style="display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; margin-top: 3rem;">
+                        <div class="tools-col" style="flex: 1 1 340px; min-width: 260px;">
+                            <h2 class="section-header pill pill-orange">Tools</h2>
+                            <div class="tools-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; justify-items: center; align-items: center;">
+                                <!-- Figma -->
+                                <div class="tool-icon" title="Figma">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                        <rect width="48" height="48" rx="8" fill="#1E1E1E"/>
+                                        <path d="M19 32C20.6569 32 22 30.6569 22 29V26H19C17.3431 26 16 27.3431 16 29C16 30.6569 17.3431 32 19 32Z" fill="#0ACF83"/>
+                                        <path d="M16 23C16 21.3431 17.3431 20 19 20H22V26H19C17.3431 26 16 24.6569 16 23Z" fill="#A259FF"/>
+                                        <path d="M16 17C16 15.3431 17.3431 14 19 14H22V20H19C17.3431 20 16 18.6569 16 17Z" fill="#F24E1E"/>
+                                        <path d="M22 14H25C26.6569 14 28 15.3431 28 17C28 18.6569 26.6569 20 25 20H22V14Z" fill="#FF7262"/>
+                                        <path d="M28 23C28 24.6569 26.6569 26 25 26C23.3431 26 22 24.6569 22 23C22 21.3431 23.3431 20 25 20C26.6569 20 28 21.3431 28 23Z" fill="#1ABCFE"/>
+                                    </svg>
+                                </div>
+                                <!-- Adobe Illustrator -->
+                                <div class="tool-icon" title="Adobe Illustrator">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                        <rect width="48" height="48" rx="8" fill="#330000"/>
+                                        <text x="24" y="32" text-anchor="middle" fill="#FF9A00" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Ai</text>
+                                    </svg>
+                                </div>
+                                <!-- Adobe Photoshop -->
+                                <div class="tool-icon" title="Adobe Photoshop">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                        <rect width="48" height="48" rx="8" fill="#001E36"/>
+                                        <text x="24" y="32" text-anchor="middle" fill="#31A8FF" font-family="Arial, sans-serif" font-size="18" font-weight="bold">Ps</text>
+                                    </svg>
+                                </div>
+                                <!-- Miro -->
+                                <div class="tool-icon" title="Miro">
+                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                        <rect width="48" height="48" rx="8" fill="#FDD835"/>
+                                        <path d="M30 12H34V28C34 29.1 33.1 30 32 30C30.9 30 30 29.1 30 28V12Z" fill="#050038"/>
+                                        <path d="M25 16H30V28C30 28.6 29.6 29 29 29S28 28.6 28 28V16H25Z" fill="#050038"/>
+                                        <path d="M20 20H25V28C25 29.1 24.1 30 23 30S21 29.1 21 28V20H20Z" fill="#050038"/>
+                                        <path d="M15 24H20V28C20 28.6 19.6 29 19 29S18 28.6 18 28V24H15Z" fill="#050038"/>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="languages-col" style="flex: 1 1 200px; min-width: 180px;">
-                            <h2 class="section-header pill pill-blue">Languages</h2>
-                            <ul class="languages-list">
-                                <li>English (C2 - Proficient)</li>
-                                <li>Hindi (C2 - Proficient)</li>
-                                <li>Marathi (C2 - Proficient)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Skills Column -->
-                <div class="skills-column">
-                    <h2 class="section-header pill pill-green">Skills</h2>
-                    
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h4>UX Design</h4>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>UX Architecture</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Wireframing & Prototyping</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>User Research</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Design Thinking</span></div>
-                        </div>
-                        <div class="skill-category">
-                            <h4>UI & Visual Design</h4>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Visual Design</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Responsive Design</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Mobile Design</span></div>
-                        </div>
-                        <div class="skill-category">
-                            <h4>Product & Strategy</h4>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Product Strategy</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Agile Methodology</span></div>
-                            <div class="skill-item"><span class="skill-check">✓</span><span>Community Building</span></div>
-                        </div>
                     </div>
 
-                    <h2 class="section-header pill pill-orange mt-xl">Tools</h2>
-                    <div class="tools-grid">
-                        <div class="tool-icon" title="Figma"><i class="fab fa-figma"></i></div>
-                        <div class="tool-icon" title="Adobe XD"><i class="fab fa-adobe"></i></div>
-                        <div class="tool-icon" title="Photoshop"><i class="fab fa-adobe"></i></div>
-                        <div class="tool-icon" title="Illustrator"><i class="fab fa-adobe"></i></div>
-                        <div class="tool-icon" title="Canva"><i class="fas fa-paint-brush"></i></div>
-                        <div class="tool-icon" title="Sketch"><i class="fas fa-pencil-ruler"></i></div>
-                        <div class="tool-icon" title="Miro"><i class="fas fa-project-diagram"></i></div>
-                    </div>
 
-                    <h2 class="section-header pill pill-yellow mt-xl">Awards</h2>
-                    <ul class="awards-list">
-                        <li>Rising Star - Rewise Analytics and Technology</li>
-                        <li>Winner of "Rangoli competition"</li>
-                    </ul>
-
-                    <div class="skills-section mt-xl">
-                        <h2 class="section-header pill pill-yellow">About me!</h2>
-                        <div class="about-fun">
-                            <p class="text-body">
-                                <span class="hero-emoji">💝</span>
-                                If you hire me, you save two lives! 
-                                <br>Mine and my cat's! 🐱
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -278,7 +302,7 @@
                         <span class="pill pill-pink">Web app</span>
                     </div>
                     <div class="project-image">
-                        <img src="https://miro.medium.com/v2/resize:fit:1400/1*pdFvSm4M1SL2ew6aBICJOg.png" alt="Going Solo - Travel Companion App" loading="lazy">
+                        <img src="https://miro.medium.com/v2/resize:fit:800/1*pdFvSm4M1SL2ew6aBICJOg.png" alt="Going Solo - Travel Companion App" loading="lazy" decoding="async">
                     </div>
                     <div class="project-content">
                         <h3 class="project-title">Going Solo</h3>
@@ -347,7 +371,7 @@
             
             <div class="case-study-hero">
                 <div class="case-study-image-main">
-                    <img src="https://miro.medium.com/v2/resize:fit:1400/1*pdFvSm4M1SL2ew6aBICJOg.png" alt="Going Solo App Design Overview" loading="lazy">
+                    <img src="https://miro.medium.com/v2/resize:fit:800/1*pdFvSm4M1SL2ew6aBICJOg.png" alt="Going Solo App Design Overview" loading="lazy" decoding="async">
                 </div>
                 <div class="case-study-intro">
                     <h3 class="case-study-title">About Going Solo</h3>
@@ -359,10 +383,19 @@
                     </p>
                     <div class="case-study-tools">
                         <div class="tool-logo">
-                            <i class="fab fa-figma" style="color: #f24e1e;"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: inline-block; vertical-align: middle;">
+                            <path d="M8 24C10.2091 24 12 22.2091 12 20V16H8C5.79086 16 4 17.7909 4 20C4 22.2091 5.79086 24 8 24Z" fill="#0ACF83"/>
+                            <path d="M4 12C4 9.79086 5.79086 8 8 8H12V16H8C5.79086 16 4 14.2091 4 12Z" fill="#A259FF"/>
+                            <path d="M4 4C4 1.79086 5.79086 0 8 0H12V8H8C5.79086 8 4 6.20914 4 4Z" fill="#F24E1E"/>
+                            <path d="M12 0H16C18.2091 0 20 1.79086 20 4C20 6.20914 18.2091 8 16 8H12V0Z" fill="#FF7262"/>
+                            <path d="M20 12C20 14.2091 18.2091 16 16 16C13.7909 16 12 14.2091 12 12C12 9.79086 13.7909 8 16 8C18.2091 8 20 9.79086 20 12Z" fill="#1ABCFE"/>
+                        </svg>
                         </div>
                         <div class="tool-logo">
-                            <i class="fab fa-adobe" style="color: #ff0000;"></i>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" style="display: inline-block; vertical-align: middle;">
+                                <rect width="24" height="24" rx="4" fill="#31A8FF"/>
+                                <text x="12" y="16" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="10" font-weight="bold">Ps</text>
+                            </svg>
                         </div>
                         <div class="tool-logo">
                             <i class="fas fa-pencil-ruler" style="color: #ffb000;"></i>
@@ -384,51 +417,7 @@
                     </p>
                 </div>
 
-                <!-- UX Research -->
-                <div class="case-study-section">
-                    <h3 class="section-header pill pill-green">UX Research</h3>
-                    <p class="text-body">
-                        I wanted to collect extensive data for comprehensive research. I explored various websites and articles 
-                        to understand the tourism landscape and identify potential solutions.
-                    </p>
-                    <div class="research-categories">
-                        <div class="research-item">
-                            <span class="skill-check">•</span>
-                            <span>What types of tourists are there?</span>
-                        </div>
-                        <div class="research-item">
-                            <span class="skill-check">•</span>
-                            <span>What types of places?</span>
-                        </div>
-                        <div class="research-item">
-                            <span class="skill-check">•</span>
-                            <span>Themes of destination</span>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Competitive Analysis -->
-                <div class="case-study-section">
-                    <h3 class="section-header pill pill-purple">Competitive Analysis</h3>
-                    <p class="text-body">
-                        I analyzed design patterns from applications solving similar problems, including Meetup, Tripr, 
-                        Travello, and Couchsurfing to identify common patterns and user expectations.
-                    </p>
-                    <div class="findings-grid">
-                        <div class="finding-card">
-                            <h4>Key Finding 1</h4>
-                            <p>Most existing apps focus on group activities rather than one-on-one travel buddy matching.</p>
-                        </div>
-                        <div class="finding-card">
-                            <h4>Key Finding 2</h4>
-                            <p>Safety and trust are common concerns, with many apps lacking robust verification features.</p>
-                        </div>
-                        <div class="finding-card">
-                            <h4>Key Finding 3</h4>
-                            <p>Users appreciate filtering companions by interests, location, and travel dates.</p>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- User Pain Points -->
                 <div class="case-study-section">
@@ -483,6 +472,438 @@
                     </div>
                 </div>
 
+                <!-- Project Timeline -->
+                <div class="case-study-section">
+                    <div class="timeline-header">
+                        <div class="timeline-badge">
+                            <span class="pill pill-blue">Project Timeline</span>
+                        </div>
+                        <p class="timeline-description">
+                            A timeline refers to a structured plan that outlines the <span class="highlight-text highlight-pink">key phases</span> and <span class="highlight-text highlight-blue">activities</span> involved in the design and development of the <strong>Going Solo</strong> platform over a specified duration.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-container">
+                        <div class="timeline-line"></div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-dot-green"></div>
+                            <div class="timeline-content timeline-content-left">
+                                <div class="timeline-week">Week 1</div>
+                                <h4 class="timeline-phase">Research & Ideation</h4>
+                                <ul class="timeline-tasks">
+                                    <li>User Interviews</li>
+                                    <li>Define Objectives</li>
+                                    <li>Data Collection</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-dot-pink"></div>
+                            <div class="timeline-content timeline-content-right">
+                                <div class="timeline-week">Week 2</div>
+                                <h4 class="timeline-phase">Wireframing & User Flow</h4>
+                                <ul class="timeline-tasks">
+                                    <li>Low-fidelity wireframes</li>
+                                    <li>User flows</li>
+                                    <li>Design Direction</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-dot-blue"></div>
+                            <div class="timeline-content timeline-content-left">
+                                <div class="timeline-week">Week 3</div>
+                                <h4 class="timeline-phase">High-Fidelity Design</h4>
+                                <ul class="timeline-tasks">
+                                    <li>High-Fidelity Screens</li>
+                                    <li>Branding</li>
+                                    <li>Design System</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot timeline-dot-yellow"></div>
+                            <div class="timeline-content timeline-content-right">
+                                <div class="timeline-week">Week 4</div>
+                                <h4 class="timeline-phase">Testing & Iteration</h4>
+                                <ul class="timeline-tasks">
+                                    <li>UI/UX Design</li>
+                                    <li>Design Testing</li>
+                                    <li>Final Review</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Persona -->
+                <div class="case-study-section">
+                    <h3 class="section-header pill pill-green">User Persona</h3>
+                    
+                    <div class="persona-wrapper">
+                        <div class="persona-card-new">
+                            <!-- Left Side - Profile -->
+                            <div class="persona-profile-section">
+                                <div class="persona-avatar">
+                                    <img src="https://i.pravatar.cc/200?img=44" alt="Sarah Chen" loading="lazy">
+                                    <div class="persona-status">
+                                        <span class="status-dot"></span>
+                                        Active Traveler
+                                    </div>
+                                </div>
+                                
+                                <div class="persona-basic-info">
+                                    <h4 class="persona-title">Sarah Chen</h4>
+                                    <p class="persona-subtitle">Digital Marketing Specialist</p>
+                                </div>
+                                
+                                <div class="persona-stats">
+                                    <div class="stat-box">
+                                        <div class="stat-number">28</div>
+                                        <div class="stat-label">Years Old</div>
+                                    </div>
+                                    <div class="stat-box">
+                                        <div class="stat-number">3+</div>
+                                        <div class="stat-label">Years Solo</div>
+                                    </div>
+                                    <div class="stat-box">
+                                        <div class="stat-number">15</div>
+                                        <div class="stat-label">Countries</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Side - Content -->
+                            <div class="persona-content-section">
+                                <div class="persona-quote">
+                                    <div class="quote-icon">"</div>
+                                    <p>"I love traveling solo, but finding trustworthy companions for certain activities would make my adventures even better and safer."</p>
+                                </div>
+                                
+                                <div class="persona-story">
+                                    <h5>About Sarah</h5>
+                                    <p>Sarah is a tech-savvy marketing professional who values flexibility and authentic experiences. She often extends business trips for personal exploration but struggles with safety concerns and finding compatible travel companions.</p>
+                                </div>
+                                
+                                <div class="persona-tags">
+                                    <span class="tag">Solo Traveler</span>
+                                    <span class="tag">Tech-Savvy</span>
+                                    <span class="tag">Safety-Conscious</span>
+                                    <span class="tag">Adventure Seeker</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Bottom Section - Goals & Pain Points -->
+                        <div class="persona-details-grid">
+                            <div class="detail-card motivations">
+                                <div class="card-header">
+                                    <span class="card-icon">🎯</span>
+                                    <h5>Motivations & Goals</h5>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>
+                                        <span class="list-icon">✓</span>
+                                        <div>
+                                            <strong>Safe Connections</strong>
+                                            <p>Find verified travel companions for enhanced safety</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">✓</span>
+                                        <div>
+                                            <strong>Authentic Experiences</strong>
+                                            <p>Discover local culture through genuine connections</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">✓</span>
+                                        <div>
+                                            <strong>Flexible Planning</strong>
+                                            <p>Maintain spontaneity with reliable backup options</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detail-card pain-points">
+                                <div class="card-header">
+                                    <span class="card-icon">⚡</span>
+                                    <h5>Pain Points & Frustrations</h5>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>
+                                        <span class="list-icon">✗</span>
+                                        <div>
+                                            <strong>Safety Concerns</strong>
+                                            <p>Anxiety about meeting strangers in unfamiliar places</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">✗</span>
+                                        <div>
+                                            <strong>Limited Network</strong>
+                                            <p>Friends have different schedules and travel preferences</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">✗</span>
+                                        <div>
+                                            <strong>Communication Barriers</strong>
+                                            <p>Language and cultural differences create obstacles</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <div class="detail-card behaviors">
+                                <div class="card-header">
+                                    <span class="card-icon">📱</span>
+                                    <h5>Digital Behaviors</h5>
+                                </div>
+                                <ul class="detail-list">
+                                    <li>
+                                        <span class="list-icon">•</span>
+                                        <div>
+                                            <strong>Research Intensive</strong>
+                                            <p>Spends hours researching destinations and safety</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">•</span>
+                                        <div>
+                                            <strong>Social Media Active</strong>
+                                            <p>Uses Instagram and travel blogs for inspiration</p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <span class="list-icon">•</span>
+                                        <div>
+                                            <strong>App Dependent</strong>
+                                            <p>Relies on mobile apps for navigation and bookings</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Empathy Map -->
+                <div class="case-study-section">
+                    <h3 class="section-header pill pill-purple">Empathy Map</h3>
+                    
+                    <div class="empathy-map-container">
+                        <div class="empathy-map-modern">
+                            
+                            <!-- Says Quadrant -->
+                            <div class="empathy-card says-card">
+                                <div class="card-label">
+                                    <span class="label-text">Says</span>
+                                </div>
+                                <div class="card-content">
+                                    <ul class="empathy-list">
+                                        <li>"I want to find trustworthy travel companions who share my interests and travel style."</li>
+                                        <li>"Safety is my biggest concern when meeting new people while traveling alone."</li>
+                                        <li>"I need a reliable way to verify that potential travel buddies are genuine and safe."</li>
+                                        <li>"Spontaneous travel is amazing, but having backup companions would make it even better."</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Thinks Quadrant -->
+                            <div class="empathy-card thinks-card">
+                                <div class="card-label">
+                                    <span class="label-text">Thinks</span>
+                                </div>
+                                <div class="card-content">
+                                    <ul class="empathy-list">
+                                        <li>I need a more efficient way to connect with like-minded solo travelers without compromising safety.</li>
+                                        <li>If I had better access to verified travel companions, I could explore more adventurous destinations.</li>
+                                        <li>I wish there was a platform that combines safety verification with travel compatibility matching.</li>
+                                        <li>How can I maintain my independence while still having the option for companionship?</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Central Avatar -->
+                            <div class="empathy-avatar">
+                                <img src="https://i.pravatar.cc/200?img=44" alt="Sarah Chen" loading="lazy">
+                            </div>
+                            
+                            <!-- Does Quadrant -->
+                            <div class="empathy-card does-card">
+                                <div class="card-label">
+                                    <span class="label-text">Does</span>
+                                </div>
+                                <div class="card-content">
+                                    <ul class="empathy-list">
+                                        <li>Researches destinations extensively for hours before booking any trip to ensure safety.</li>
+                                        <li>Joins multiple travel forums and Facebook groups to seek advice and potential companions.</li>
+                                        <li>Always shares her location and itinerary with family and friends for safety.</li>
+                                        <li>Books accommodations in well-reviewed, central locations to maximize safety and accessibility.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Feels Quadrant -->
+                            <div class="empathy-card feels-card">
+                                <div class="card-label">
+                                    <span class="label-text">Feels</span>
+                                </div>
+                                <div class="card-content">
+                                    <ul class="empathy-list">
+                                        <li>Excited about the freedom and self-discovery that comes with solo travel adventures.</li>
+                                        <li>Anxious about safety risks and the potential for dangerous situations in unfamiliar places.</li>
+                                        <li>Frustrated by the limited options for finding compatible and verified travel companions.</li>
+                                        <li>Empowered by her independence but sometimes lonely during amazing experiences she'd love to share.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Site Map Section -->
+                <div class="case-study-section">
+                    <h3 class="section-header pill pill-green">Site Map</h3>
+                    <p class="section-description">Complete information architecture showing all app screens and navigation paths for the Going Solo travel companion platform.</p>
+                    
+                    <div class="sitemap-flowchart">
+                        <svg class="sitemap-svg" viewBox="0 0 1600 1000">
+                            <!-- Background -->
+                            <rect width="1600" height="1000" fill="#1a1a2e" rx="20"/>
+                            
+                            <!-- Connection Lines (Curved organic paths) -->
+                            <!-- Onboarding branch (left side) -->
+                            <path d="M 800 400 C 650 350, 400 300, 250 250" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 250 250 C 200 280, 150 300, 100 320" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 250 250 C 200 200, 150 180, 100 160" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Discovery branch (top right) -->
+                            <path d="M 800 400 C 950 350, 1100 300, 1200 250" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1200 250 C 1250 200, 1300 180, 1350 160" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1200 250 C 1250 280, 1300 300, 1350 320" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Connections branch (right side) -->
+                            <path d="M 800 400 C 950 400, 1100 400, 1200 400" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1200 400 C 1250 380, 1300 370, 1350 360" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1200 400 C 1250 420, 1300 430, 1350 440" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Trip Planning branch (bottom left) -->
+                            <path d="M 800 400 C 650 500, 500 600, 350 700" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 350 700 C 300 720, 250 730, 200 740" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 350 700 C 300 680, 250 670, 200 660" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Profile branch (bottom right) -->
+                            <path d="M 800 400 C 950 500, 1100 600, 1250 700" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1250 700 C 1300 680, 1350 670, 1400 660" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 1250 700 C 1300 720, 1350 730, 1400 740" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Support branch (bottom center) -->
+                            <path d="M 800 400 C 800 500, 800 600, 800 700" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 800 700 C 750 750, 700 780, 650 800" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            <path d="M 800 700 C 850 750, 900 780, 950 800" stroke="#4a5568" stroke-width="2" fill="none"/>
+                            
+                            <!-- Central Home Node -->
+                            <rect x="720" y="370" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="800" y="410" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="600">Home</text>
+                            
+                            <!-- Primary Nodes -->
+                            <!-- Onboarding -->
+                            <rect x="170" y="220" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="250" y="260" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Onboarding</text>
+                            
+                            <!-- Discovery -->
+                            <rect x="1120" y="220" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="1200" y="260" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Discovery</text>
+                            
+                            <!-- Connections -->
+                            <rect x="1120" y="370" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="1200" y="410" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Connections</text>
+                            
+                            <!-- Trip Planning -->
+                            <rect x="270" y="670" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="350" y="710" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Trip Planning</text>
+                            
+                            <!-- Profile -->
+                            <rect x="1170" y="670" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="1250" y="710" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Profile</text>
+                            
+                            <!-- Support -->
+                            <rect x="720" y="670" width="160" height="60" rx="30" fill="#5a6c7d" stroke="none"/>
+                            <text x="800" y="710" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="16" font-weight="500">Support</text>
+                            
+                            <!-- Secondary Nodes -->
+                            <!-- Onboarding subs -->
+                            <rect x="20" y="130" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="100" y="170" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Welcome Screen</text>
+                            
+                            <rect x="20" y="290" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="100" y="330" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Account Creation</text>
+                            
+                            <!-- Discovery subs -->
+                            <rect x="1420" y="130" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1500" y="170" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Browse</text>
+                            
+                            <rect x="1420" y="290" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1500" y="330" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Search</text>
+                            
+                            <!-- Connections subs -->
+                            <rect x="1420" y="330" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1500" y="370" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Messages</text>
+                            
+                            <rect x="1420" y="410" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1500" y="450" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Video Chat</text>
+                            
+                            <!-- Trip Planning subs -->
+                            <rect x="120" y="630" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="200" y="670" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Create Trip</text>
+                            
+                            <rect x="120" y="710" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="200" y="750" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Budget Tracker</text>
+                            
+                            <!-- Profile subs -->
+                            <rect x="1470" y="630" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1550" y="670" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Settings</text>
+                            
+                            <rect x="1470" y="710" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="1550" y="750" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Travel History</text>
+                            
+                            <!-- Support subs -->
+                            <rect x="570" y="770" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="650" y="810" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Help Center</text>
+                            
+                            <rect x="870" y="770" width="160" height="60" rx="30" fill="#718096" stroke="none"/>
+                            <text x="950" y="810" text-anchor="middle" fill="white" font-family="Space Grotesk, sans-serif" font-size="14">Safety</text>
+                        </svg>
+                    </div>
+                    
+                    <!-- Site Map Legend -->
+                    <div class="sitemap-legend">
+                        <h4 class="legend-title">Navigation Structure</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color primary"></div>
+                                <span>Primary Navigation</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color secondary"></div>
+                                <span>Secondary Features</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color support"></div>
+                                <span>Support & Settings</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Visual Design -->
                 <div class="case-study-section">
                     <h3 class="section-header pill pill-yellow">Visual Design</h3>
@@ -495,7 +916,7 @@
                             the app delivers. The primary registration method is email with OTP verification.
                         </p>
                         <div class="design-image">
-                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*TFSJGEP3t-BhCcjvXwVerA.png" alt="Going Solo Onboarding Screens" loading="lazy">
+                            <img src="https://miro.medium.com/v2/resize:fit:800/1*TFSJGEP3t-BhCcjvXwVerA.png" alt="Going Solo Onboarding Screens" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -528,7 +949,7 @@
                             </div>
                         </div>
                         <div class="design-image">
-                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*nzhBzdMSGjnqtweEr-mdvw.png" alt="Navigation Design" loading="lazy">
+                            <img src="https://miro.medium.com/v2/resize:fit:600/1*nzhBzdMSGjnqtweEr-mdvw.png" alt="Navigation Design" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -540,7 +961,7 @@
                             Users can create their own groups that others can freely join.
                         </p>
                         <div class="design-image">
-                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*dgPYdTZ9BZqoINRN-7F9sQ.png" alt="Home Screen Design" loading="lazy">
+                            <img src="https://miro.medium.com/v2/resize:fit:600/1*dgPYdTZ9BZqoINRN-7F9sQ.png" alt="Home Screen Design" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -552,7 +973,7 @@
                             trip itineraries, events, and forum discussions.
                         </p>
                         <div class="design-image">
-                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*J9U-Vv-4izUuKh78tDd6gQ.png" alt="Feed Design" loading="lazy">
+                            <img src="https://miro.medium.com/v2/resize:fit:600/1*J9U-Vv-4izUuKh78tDd6gQ.png" alt="Feed Design" loading="lazy" decoding="async">
                         </div>
                     </div>
 
@@ -564,7 +985,7 @@
                             based on shared interests, destinations, and various factors.
                         </p>
                         <div class="design-image">
-                            <img src="https://miro.medium.com/v2/resize:fit:1400/1*LwnKK_bCP2f_vO3LrX_asQ.png" alt="Travel Buddy Matching Interface" loading="lazy">
+                            <img src="https://miro.medium.com/v2/resize:fit:600/1*LwnKK_bCP2f_vO3LrX_asQ.png" alt="Travel Buddy Matching Interface" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -623,7 +1044,9 @@
                         </div>
                     </div>
                 </div>
+                
 
+                
                 <!-- Call to Action -->
                 <div class="case-study-cta">
                     <h3>Want to learn more?</h3>
@@ -637,38 +1060,13 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-        <div class="container">
-            <div class="contact-content">
-                <h2 class="contact-title title-section">Let's Work Together</h2>
-                <p class="contact-description">
-                    Ready to create something amazing? Let's discuss your project 
-                    and bring your ideas to life through thoughtful design.
-                </p>
-                <div class="contact-buttons">
-                    <a href="mailto:sutarmithila@gmail.com" class="btn btn-primary">
-                        <i class="fas fa-envelope"></i>
-                        Get In Touch
-                    </a>
-                    <a href="https://www.linkedin.com/in/mithila-sutar" target="_blank" rel="noopener" class="btn btn-secondary">
-                        <i class="fab fa-linkedin"></i>
-                        Connect on LinkedIn
-                    </a>
-                    <a href="https://www.behance.net/mithilasutar" target="_blank" rel="noopener" class="btn btn-outline">
-                        <i class="fab fa-behance"></i>
-                        View Portfolio
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-name">Mithila Sutar</div>
+                <div class="footer-name">Mithila Swansi</div>
                 <p class="footer-tagline">
                     Product Designer crafting meaningful digital experiences
                 </p>
@@ -688,7 +1086,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Mithila Sutar. All rights reserved. Designed with passion 💝</p>
+                <p>&copy; 2025 Mithila Swansi. All rights reserved. Designed with passion 💝</p>
             </div>
         </div>
     </footer>
@@ -699,6 +1097,6 @@
     </button>
 
     <!-- JavaScript -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html> 

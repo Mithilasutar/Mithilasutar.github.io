@@ -1,15 +1,41 @@
 // Nemish-Style Portfolio JavaScript - 2025
 document.addEventListener('DOMContentLoaded', function() {
+    // Hide loading bar after initial content loads
+    setTimeout(() => {
+        const loadingBar = document.getElementById('loadingBar');
+        if (loadingBar) {
+            loadingBar.style.opacity = '0';
+            setTimeout(() => loadingBar.remove(), 500);
+        }
+    }, 1500);
+    
+    // Show floating pills after full CSS load
+    setTimeout(() => {
+        const floatingPills = document.querySelector('.floating-pills');
+        if (floatingPills) floatingPills.style.display = 'block';
+    }, 100);
+    
+    // Initialize core functionality
     initNavigation();
     initSmoothScrolling();
-    initBackToTop();
-    initScrollAnimations();
     initMobileMenu();
-    initToolHovers();
-    initProjectAnimations();
-    initHeroAnimations();
-    initFloatingPillInteractions();
-    initContactButtons();
+    
+    // Defer non-critical animations
+    const deferInit = () => {
+        initBackToTop();
+        initScrollAnimations();
+        initToolHovers();
+        initProjectAnimations();
+        initHeroAnimations();
+        initFloatingPillInteractions();
+        initContactButtons();
+    };
+    
+    if (window.requestIdleCallback) {
+        requestIdleCallback(deferInit);
+    } else {
+        setTimeout(deferInit, 100);
+    }
 });
 
 // Enhanced Navigation for Dark Theme
@@ -17,8 +43,10 @@ function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Enhanced navbar scroll effect for dark theme
+    // Enhanced navbar scroll effect for dark theme - optimized with RAF
     let lastScrollY = 0;
+    let ticking = false;
+    
     const handleScroll = () => {
         const currentScrollY = window.scrollY;
         
@@ -33,13 +61,31 @@ function initNavigation() {
         }
         
         lastScrollY = currentScrollY;
+        ticking = false;
     };
     
-    window.addEventListener('scroll', throttle(handleScroll, 10));
+    const onScroll = () => {
+        if (!ticking) {
+            requestAnimationFrame(handleScroll);
+            ticking = true;
+        }
+    };
     
-    // Active navigation state with glow effect
+    window.addEventListener('scroll', onScroll, { passive: true });
+    
+    // Active navigation state with glow effect - optimized
     updateActiveNavLink();
-    window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
+    let navTicking = false;
+    const onNavScroll = () => {
+        if (!navTicking) {
+            requestAnimationFrame(() => {
+                updateActiveNavLink();
+                navTicking = false;
+            });
+            navTicking = true;
+        }
+    };
+    window.addEventListener('scroll', onNavScroll, { passive: true });
 }
 
 // Update active navigation link with glow effect
