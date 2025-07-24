@@ -1,71 +1,116 @@
-// Portfolio JavaScript
+// Nemish-Style Portfolio JavaScript - 2025
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
     initNavigation();
     initSmoothScrolling();
     initBackToTop();
-    initAnimations();
-    initContactForm();
+    initScrollAnimations();
     initMobileMenu();
-    initScrollEffects();
+    initToolHovers();
+    initProjectAnimations();
+    initHeroAnimations();
+    initRotatingWords();
+    initRotatingAdjectives();
+    initCursorFollower();
+    initFloatingPillInteractions();
+    initLetterHoverEffects();
+    initContactButtons();
 });
 
-// Navigation functionality
+// Enhanced Navigation for Dark Theme
 function initNavigation() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // Navbar scroll effect
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+    // Enhanced navbar scroll effect for dark theme
+    let lastScrollY = 0;
+    const handleScroll = () => {
+        const currentScrollY = window.scrollY;
+        
+        if (currentScrollY > 50) {
+            navbar.style.background = 'rgba(15, 15, 35, 0.98)';
+            navbar.style.backdropFilter = 'blur(20px)';
+            navbar.style.borderBottom = '1px solid var(--border-color)';
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+            navbar.style.background = 'rgba(15, 15, 35, 0.95)';
+            navbar.style.backdropFilter = 'blur(20px)';
+            navbar.style.borderBottom = '1px solid var(--border-color)';
+        }
+        
+        lastScrollY = currentScrollY;
+    };
+    
+    window.addEventListener('scroll', throttle(handleScroll, 10));
+    
+    // Active navigation state with glow effect
+    updateActiveNavLink();
+    window.addEventListener('scroll', throttle(updateActiveNavLink, 100));
+}
+
+// Update active navigation link with glow effect
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
         }
     });
     
-    // Active navigation link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            navLinks.forEach(l => l.classList.remove('active'));
-            this.classList.add('active');
-        });
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
     });
 }
 
-// Mobile menu functionality
+// Enhanced Mobile Menu for Dark Theme
 function initMobileMenu() {
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
+    const body = document.body;
     
-    if (hamburger) {
+    if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
+            const isActive = hamburger.classList.contains('active');
+            
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
+            
+            // Prevent body scroll when menu is open
+            if (!isActive) {
+                body.style.overflow = 'hidden';
+            } else {
+                body.style.overflow = '';
+            }
         });
-    }
-    
-    // Close mobile menu when clicking on a link
+        
+        // Close menu when clicking on links
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+                body.style.overflow = '';
+            });
         });
-    });
-    
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        
+        // Close menu with escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
+                body.style.overflow = '';
         }
     });
+    }
 }
 
-// Smooth scrolling for navigation links
+// Smooth Scrolling with proper offset
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('a[href^="#"]');
     
@@ -77,10 +122,12 @@ function initSmoothScrolling() {
             const targetSection = document.querySelector(targetId);
             
             if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+                const headerOffset = 80;
+                const elementPosition = targetSection.offsetTop;
+                const offsetPosition = elementPosition - headerOffset;
                 
                 window.scrollTo({
-                    top: offsetTop,
+                    top: offsetPosition,
                     behavior: 'smooth'
                 });
             }
@@ -88,18 +135,20 @@ function initSmoothScrolling() {
     });
 }
 
-// Back to top button
+// Enhanced Back to Top with Glow Effect
 function initBackToTop() {
     const backToTopBtn = document.getElementById('backToTop');
     
     if (backToTopBtn) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
+        const handleScroll = () => {
+            if (window.scrollY > 400) {
                 backToTopBtn.classList.add('visible');
             } else {
                 backToTopBtn.classList.remove('visible');
             }
-        });
+        };
+        
+        window.addEventListener('scroll', throttle(handleScroll, 100));
         
         backToTopBtn.addEventListener('click', () => {
             window.scrollTo({
@@ -110,176 +159,256 @@ function initBackToTop() {
     }
 }
 
-// Scroll animations
-function initAnimations() {
+// Modern Scroll Animations with Staggered Effects
+function initScrollAnimations() {
+    // Intersection Observer for fade-in animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
     
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.case-study-section, .feature-card, .audience-card, .project-card, .contact-item');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// Scroll effects
-function initScrollEffects() {
-    // Parallax effect for hero section
-    const hero = document.querySelector('.hero');
-    const floatingCards = document.querySelectorAll('.floating-card');
-    
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        
-        if (hero) {
-            hero.style.transform = `translateY(${rate}px)`;
-        }
-        
-        // Floating cards parallax
-        floatingCards.forEach((card, index) => {
-            const speed = (index + 1) * 0.1;
-            card.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    });
-    
-    // Reveal animations on scroll
-    const revealElements = document.querySelectorAll('.case-study-section, .feature-card, .audience-card');
-    
-    const revealObserver = new IntersectionObserver((entries) => {
+    const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.opacity = '1';
                 entry.target.style.transform = 'translateY(0)';
+                fadeObserver.unobserve(entry.target);
             }
         });
-    }, { threshold: 0.1 });
+    }, observerOptions);
     
-    revealElements.forEach(el => {
+    // Elements to animate on scroll
+    const animateElements = document.querySelectorAll(`
+        .experience-card, 
+        .education-card,
+        .skill-category, 
+        .project-card, 
+        .tool-icon,
+        .case-study-hero,
+        .about-statement
+    `);
+    
+    animateElements.forEach((el, index) => {
+        // Initial state
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        revealObserver.observe(el);
+        el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+        
+        fadeObserver.observe(el);
     });
 }
 
-// Contact form functionality
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
+// Hero Section Animations
+function initHeroAnimations() {
+    const heroEmoji = document.querySelector('.hero-emoji');
+    const heroPills = document.querySelectorAll('.hero-subtitle .pill');
+    const heroTitle = document.querySelector('.hero-title');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const message = formData.get('message');
-            
-            // Basic validation
-            if (!name || !email || !message) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-            
-            if (!isValidEmail(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-            submitBtn.disabled = true;
-            
-            // Simulate API call
-            setTimeout(() => {
-                showNotification('Thank you! Your message has been sent successfully.', 'success');
-                this.reset();
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            }, 2000);
+    // Animate hero elements on load
+    if (heroTitle) {
+        heroTitle.style.animation = 'fadeInUp 0.8s ease 0.2s both';
+    }
+    
+    if (heroEmoji) {
+        heroEmoji.style.animation = 'bounce 2s infinite';
+    }
+    
+    // Stagger pill animations
+    heroPills.forEach((pill, index) => {
+        pill.style.animation = `fadeInUp 0.6s ease ${0.4 + index * 0.1}s both`;
+    });
+}
+
+// Tool Icons Hover Effects
+function initToolHovers() {
+    const toolIcons = document.querySelectorAll('.tool-icon');
+    
+    toolIcons.forEach(tool => {
+        tool.addEventListener('mouseenter', () => {
+            tool.style.transform = 'translateY(-4px) scale(1.1)';
+            tool.style.boxShadow = 'var(--shadow-card)';
         });
+        
+        tool.addEventListener('mouseleave', () => {
+            tool.style.transform = '';
+            tool.style.boxShadow = '';
+        });
+    });
+}
+
+// Enhanced Project Card Animations
+function initProjectAnimations() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        const image = card.querySelector('.project-image img');
+        const number = card.querySelector('.project-number');
+        
+        card.addEventListener('mouseenter', () => {
+            if (image) {
+                image.style.transform = 'scale(1.05)';
+            }
+            if (number) {
+                number.style.color = 'rgba(57, 255, 20, 0.3)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            if (image) {
+                image.style.transform = 'scale(1)';
+            }
+            if (number) {
+                number.style.color = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+    });
+}
+
+// Contact Buttons with Enhanced Effects
+function initContactButtons() {
+    const contactButtons = document.querySelectorAll('.contact-buttons .btn');
+    
+    contactButtons.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            if (btn.classList.contains('btn-primary')) {
+                btn.style.boxShadow = 'var(--shadow-glow)';
+            }
+        });
+        
+        btn.addEventListener('mouseleave', () => {
+            btn.style.boxShadow = '';
+        });
+    });
+}
+
+// Pill Hover Effects
+function initPillEffects() {
+    const pills = document.querySelectorAll('.pill');
+    
+    pills.forEach(pill => {
+        pill.addEventListener('mouseenter', () => {
+            pill.style.transform = 'translateY(-2px) scale(1.05)';
+        });
+        
+        pill.addEventListener('mouseleave', () => {
+            pill.style.transform = '';
+        });
+    });
+}
+
+// Initialize pill effects
+document.addEventListener('DOMContentLoaded', () => {
+    initPillEffects();
+});
+
+// Enhanced Scroll Effects for Dark Theme
+function initEnhancedScrollEffects() {
+    // Add parallax effect to hero elements
+    const heroYear = document.querySelector('.hero-year');
+    const heroTitle = document.querySelector('.hero-title');
+    
+    if (heroYear && heroTitle) {
+        window.addEventListener('scroll', throttle(() => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            
+            heroYear.style.transform = `translateY(${rate}px)`;
+            heroTitle.style.transform = `translateY(${rate * 0.5}px)`;
+        }, 16));
     }
 }
 
-// Email validation
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+// Initialize enhanced scroll effects
+initEnhancedScrollEffects();
+
+// Utility Functions
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    };
 }
 
-// Notification system
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// Enhanced Notification System for Dark Theme
 function showNotification(message, type = 'info') {
     // Remove existing notifications
     const existingNotifications = document.querySelectorAll('.notification');
     existingNotifications.forEach(notification => notification.remove());
     
-    // Create notification element
+    // Create notification
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    
     notification.innerHTML = `
         <div class="notification-content">
             <i class="fas ${getNotificationIcon(type)}"></i>
             <span>${message}</span>
-            <button class="notification-close">
+            <button class="notification-close" aria-label="Close notification">
                 <i class="fas fa-times"></i>
             </button>
         </div>
     `;
     
-    // Add styles
+    // Dark theme styles
     notification.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
         background: ${getNotificationColor(type)};
         color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         z-index: 10000;
         transform: translateX(100%);
-        transition: transform 0.3s ease;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         max-width: 400px;
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
     `;
     
-    // Add to page
     document.body.appendChild(notification);
     
     // Animate in
-    setTimeout(() => {
+    requestAnimationFrame(() => {
         notification.style.transform = 'translateX(0)';
-    }, 100);
+    });
     
-    // Auto remove after 5 seconds
-    setTimeout(() => {
+    // Auto remove
+    const autoRemoveTimer = setTimeout(() => {
         removeNotification(notification);
     }, 5000);
     
-    // Close button functionality
+    // Close button
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
+        clearTimeout(autoRemoveTimer);
         removeNotification(notification);
     });
 }
 
 function removeNotification(notification) {
     notification.style.transform = 'translateX(100%)';
+    notification.style.opacity = '0';
+    
     setTimeout(() => {
         if (notification.parentNode) {
             notification.parentNode.removeChild(notification);
@@ -299,197 +428,293 @@ function getNotificationIcon(type) {
 
 function getNotificationColor(type) {
     const colors = {
-        success: '#10b981',
+        success: 'var(--accent-green)',
         error: '#ef4444',
-        warning: '#f59e0b',
-        info: '#3b82f6'
+        warning: 'var(--accent-orange)',
+        info: 'var(--accent-blue)'
     };
     return colors[type] || colors.info;
 }
 
-// Image lazy loading
-function initLazyLoading() {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src || img.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-        
-        images.forEach(img => imageObserver.observe(img));
-    }
-}
-
-// Typing animation for hero title
-function initTypingAnimation() {
-    const heroTitle = document.querySelector('.hero-title');
-    if (!heroTitle) return;
-    
-    const text = heroTitle.textContent;
-    heroTitle.textContent = '';
-    
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            heroTitle.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    };
-    
-    // Start typing animation after a delay
-    setTimeout(typeWriter, 1000);
-}
-
-// Counter animation for stats
-function initCounterAnimation() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // 60fps
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => counterObserver.observe(counter));
-}
-
-// Initialize additional features
-document.addEventListener('DOMContentLoaded', function() {
-    initLazyLoading();
-    initTypingAnimation();
-    initCounterAnimation();
-});
-
-// Utility functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// Enhanced scroll effects with throttling
-const throttledScrollHandler = throttle(() => {
-    // Update active navigation link based on scroll position
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-}, 100);
-
-window.addEventListener('scroll', throttledScrollHandler);
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    // Escape key to close mobile menu
-    if (e.key === 'Escape') {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        if (hamburger && navMenu) {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    }
-    
-    // Arrow keys for navigation
-    if (e.key === 'ArrowUp' && e.ctrlKey) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-});
-
-// Performance optimization: Preload critical images
-function preloadImages() {
+// Performance Optimizations for Dark Theme
+function preloadCriticalAssets() {
     const criticalImages = [
         'https://miro.medium.com/v2/resize:fill:128:128/0*s4NcjH4fyD66fod3',
         'https://miro.medium.com/v2/resize:fit:1400/1*pdFvSm4M1SL2ew6aBICJOg.png'
     ];
     
     criticalImages.forEach(src => {
-        const img = new Image();
-        img.src = src;
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.as = 'image';
+        link.href = src;
+        document.head.appendChild(link);
     });
 }
 
-// Initialize preloading
-preloadImages();
+// Initialize critical preloading
+preloadCriticalAssets();
 
-// Service Worker registration for PWA capabilities
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-                console.log('SW registered: ', registration);
-            })
-            .catch(registrationError => {
-                console.log('SW registration failed: ', registrationError);
+// Accessibility Enhancements for Dark Theme
+function initAccessibility() {
+    // Focus management for mobile menu
+    const mobileMenuToggle = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.nav-menu');
+    
+    if (mobileMenuToggle && mobileMenu) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isExpanded = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', !isExpanded);
+        });
+    }
+    
+    // Enhanced focus indicators for dark theme
+    const focusableElements = document.querySelectorAll('a, button, [tabindex]');
+    focusableElements.forEach(el => {
+        el.addEventListener('focus', () => {
+            el.style.outline = '2px solid var(--accent-green)';
+            el.style.outlineOffset = '2px';
+        });
+        
+        el.addEventListener('blur', () => {
+            el.style.outline = '';
+            el.style.outlineOffset = '';
+        });
+    });
+}
+
+// Initialize accessibility features
+initAccessibility();
+
+// Rotating Words Animation
+function initRotatingWords() {
+    const words = document.querySelectorAll('.rotating-words .word');
+    if (words.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    // Initialize first word as active
+    words.forEach((word, index) => {
+        if (index === 0) {
+            word.classList.add('active');
+        } else {
+            word.classList.remove('active');
+        }
+    });
+    
+    // Rotate words every 2 seconds
+    setInterval(() => {
+        words[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % words.length;
+        words[currentIndex].classList.add('active');
+    }, 2000);
+}
+
+// Rotating Adjectives Animation for New Hero
+function initRotatingAdjectives() {
+    const adjectives = document.querySelectorAll('.rotating-adjectives .adjective');
+    if (adjectives.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    // Initialize first adjective as active
+    adjectives.forEach((adjective, index) => {
+        if (index === 0) {
+            adjective.classList.add('active');
+                    } else {
+            adjective.classList.remove('active');
+        }
+    });
+    
+    // Rotate adjectives every 3 seconds
+    setInterval(() => {
+        adjectives[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % adjectives.length;
+        adjectives[currentIndex].classList.add('active');
+    }, 3000);
+}
+
+// Cursor Follower for Hero Section
+function initCursorFollower() {
+    const cursorFollower = document.querySelector('.cursor-follower');
+    const hero = document.querySelector('.hero');
+    
+    if (!cursorFollower || !hero) return;
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let followerX = 0;
+    let followerY = 0;
+    
+    hero.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+    
+    hero.addEventListener('mouseenter', () => {
+        cursorFollower.style.opacity = '0.8';
+    });
+    
+    hero.addEventListener('mouseleave', () => {
+        cursorFollower.style.opacity = '0';
+    });
+    
+    // Smooth cursor following animation
+    function updateCursorFollower() {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        
+        cursorFollower.style.transform = `translate(${followerX - 10}px, ${followerY - 10}px)`;
+        requestAnimationFrame(updateCursorFollower);
+    }
+    
+    updateCursorFollower();
+}
+
+// Floating Pills Interactions
+function initFloatingPillInteractions() {
+    const floatingPills = document.querySelectorAll('.floating-pill');
+    
+    floatingPills.forEach(pill => {
+        pill.addEventListener('mouseenter', () => {
+            // Add sparkle effect on hover
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'absolute';
+            sparkle.style.top = '-10px';
+            sparkle.style.right = '-10px';
+            sparkle.style.fontSize = '1rem';
+            sparkle.style.animation = 'sparkle 0.6s ease-out forwards';
+            sparkle.style.pointerEvents = 'none';
+            pill.appendChild(sparkle);
+            
+            // Remove sparkle after animation
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 600);
+        });
+        
+        pill.addEventListener('click', () => {
+            // Create ripple effect
+            const ripple = document.createElement('div');
+            ripple.style.position = 'absolute';
+            ripple.style.width = '100%';
+            ripple.style.height = '100%';
+            ripple.style.borderRadius = 'inherit';
+            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+            ripple.style.transform = 'scale(0)';
+            ripple.style.animation = 'ripple 0.6s ease-out';
+            ripple.style.pointerEvents = 'none';
+            pill.appendChild(ripple);
+            
+            // Show notification with pill text
+            const text = pill.dataset.text || pill.textContent;
+            showNotification(`${text} - That's what I do best! 🚀`, 'success');
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                if (ripple.parentNode) {
+                    ripple.parentNode.removeChild(ripple);
+                }
+            }, 600);
+        });
+    });
+}
+
+// Letter Hover Effects for Portfolio Text
+function initLetterHoverEffects() {
+    const letters = document.querySelectorAll('.portfolio-text .letter');
+    
+    letters.forEach((letter, index) => {
+        letter.addEventListener('mouseenter', () => {
+            // Add glow effect to adjacent letters
+            if (letters[index - 1]) {
+                letters[index - 1].style.textShadow = '0 0 10px var(--accent-blue)';
+            }
+            if (letters[index + 1]) {
+                letters[index + 1].style.textShadow = '0 0 10px var(--accent-blue)';
+            }
+        });
+        
+        letter.addEventListener('mouseleave', () => {
+            // Remove glow effect from adjacent letters
+            if (letters[index - 1]) {
+                letters[index - 1].style.textShadow = '';
+            }
+            if (letters[index + 1]) {
+                letters[index + 1].style.textShadow = '';
+            }
+        });
+        
+        letter.addEventListener('click', () => {
+            // Create explosion effect
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('div');
+                particle.innerHTML = '✦';
+                particle.style.position = 'absolute';
+                particle.style.color = `var(--accent-${['green', 'pink', 'purple', 'blue', 'orange', 'yellow'][i]})`;
+                particle.style.fontSize = '1rem';
+                particle.style.pointerEvents = 'none';
+                particle.style.animation = `letterExplosion 1s ease-out forwards`;
+                particle.style.animationDelay = `${i * 0.1}s`;
+                
+                const rect = letter.getBoundingClientRect();
+                particle.style.left = `${rect.left + rect.width / 2}px`;
+                particle.style.top = `${rect.top + rect.height / 2}px`;
+                
+                document.body.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 1000);
+            }
             });
     });
 }
 
-// Export functions for potential external use
+// Easter Egg: Konami Code
+let konamiCode = [];
+const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+
+document.addEventListener('keydown', (e) => {
+    konamiCode.push(e.code);
+    
+    if (konamiCode.length > konamiSequence.length) {
+        konamiCode.shift();
+    }
+    
+    if (JSON.stringify(konamiCode) === JSON.stringify(konamiSequence)) {
+        showNotification('🎉 Easter egg activated! You found the secret! 🐱', 'success');
+        
+        // Add rainbow effect to page
+        document.body.style.animation = 'rainbow 2s ease-in-out';
+        setTimeout(() => {
+            document.body.style.animation = '';
+        }, 2000);
+        
+        konamiCode = [];
+    }
+});
+
+// Add rainbow animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes rainbow {
+        0% { filter: hue-rotate(0deg); }
+        100% { filter: hue-rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
+
+// Export for external use
 window.PortfolioApp = {
     showNotification,
-    initAnimations,
-    initContactForm
+    initScrollAnimations,
+    updateActiveNavLink,
+    initProjectAnimations
 }; 
